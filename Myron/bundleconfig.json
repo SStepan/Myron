@@ -1,0 +1,9 @@
+[
+  {
+    "outputFileName": "Scripts/esflex.js",
+    "inputFiles": [
+      "Scripts/easing.js",
+      "Scripts/flexslider.js"
+    ]
+  }
+]
