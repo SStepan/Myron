@@ -40,5 +40,10 @@ namespace Myron.Controllers {
 
 			return View();
 		}
+
+		[HttpPost]
+		public ActionResult MyMessages() {
+			return View();
+		}
 	}
 }

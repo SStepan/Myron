@@ -1,4 +1,4 @@
-﻿using System;
+﻿   using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +9,12 @@ namespace Myron {
 	public class RouteConfig {
 		public static void RegisterRoutes(RouteCollection routes) {
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+			routes.MapRoute(
+				name: "MyMessages",
+				url: "MyMessages",
+				defaults: new {controller = "Home", action = "MyMessages"}
+			);
 
 			routes.MapRoute(
 				name: "Default",
