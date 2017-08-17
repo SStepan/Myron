@@ -1,4 +1,7 @@
+using System.Web.Http;
+using Myron.Data;
 using Myron.Services;
+using WebApiContrib.IoC.Ninject;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Myron.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Myron.App_Start.NinjectWebCommon), "Stop")]
@@ -42,6 +45,8 @@ namespace Myron.App_Start {
 				kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
 				RegisterServices(kernel);
+
+				GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
 				return kernel;
 			} catch {
 				kernel.Dispose();
@@ -60,6 +65,9 @@ namespace Myron.App_Start {
 #else
 			kernel.Bind<IMailService>().To<MailService>().InRequestScope();
 #endif
-		}
+			kernel.Bind<MessageBoardContext>().To<MessageBoardContext>().InRequestScope();
+			kernel.Bind<IMessageBoardRepository>().To<MessageBoardRepository>().InRequestScope();
+
+		} 
 	}
 }
